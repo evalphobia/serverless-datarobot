@@ -1,0 +1,52 @@
+{
+  "body": "{ \"<input your model's variable>\": 100 }",
+  "resource": "/predict",
+  "requestContext": {
+    "resourceId": "abcd12",
+    "apiId": "abcd12",
+    "resourcePath": "/predict",
+    "httpMethod": "POST",
+    "requestId": "00000000-0000-0000-0000-000000000000",
+    "path": "/dev/predict",
+    "accountId": "1234",
+    "identity": {
+      "apiKey": "",
+      "userArn": null,
+      "cognitoAuthenticationType": null,
+      "accessKey": null,
+      "caller": null,
+      "userAgent": "curl/7.49.0",
+      "user": null,
+      "cognitoIdentityPoolId": null,
+      "cognitoIdentityId": null,
+      "cognitoAuthenticationProvider": null,
+      "sourceIp": "127.0.0.1",
+      "accountId": null
+    },
+    "stage": "dev"
+  },
+  "queryStringParameters": null,
+  "httpMethod": "POST",
+  "pathParameters": null,
+  "headers": {
+    "Content-Type": "application/json",
+    "Via": "1.1 1234.cloudfront.net (CloudFront)",
+    "CloudFront-Is-Desktop-Viewer": "true",
+    "CloudFront-Is-SmartTV-Viewer": "false",
+    "CloudFront-Forwarded-Proto": "https",
+    "X-Forwarded-For": "127.0.0.1, 0.0.0.0",
+    "CloudFront-Viewer-Country": "JP",
+    "Accept": "*/*",
+    "User-Agent": "curl/7.49.0",
+    "X-Amzn-Trace-Id": "Root=1-00000000-000000000000000000000000",
+    "Host": "1234.execute-api.ap-northeast-1.amazonaws.com",
+    "X-Forwarded-Proto": "https",
+    "X-Amz-Cf-Id": "",
+    "CloudFront-Is-Tablet-Viewer": "false",
+    "X-Forwarded-Port": "443",
+    "CloudFront-Is-Mobile-Viewer": "false"
+  },
+  "stageVariables": null,
+  "path": "/predict",
+  "isBase64Encoded": false
+}

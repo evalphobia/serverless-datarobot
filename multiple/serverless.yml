@@ -1,0 +1,43 @@
+service: serverless-datarobot-multi
+
+provider:
+  name: aws
+  region: ap-northeast-1
+  runtime: python2.7
+
+package:
+  individually: True
+  exclude:
+    - '**/*'
+
+functions:
+  datarobot1:
+    handler: datarobot1/wrap.handler
+    memorySize: 128
+    events:
+      - http:
+          path: predict
+          method: post
+    package:
+      include:
+        - datarobot1/**
+  datarobot2:
+    handler: datarobot2/wrap.handler
+    memorySize: 128
+    events:
+      - http:
+          path: predict
+          method: post
+    package:
+      include:
+        - datarobot2/**
+
+custom:
+  pyIndividually:
+    dockerizedPip: True
+    # mapping to the real handler
+    wrap:datarobot1: datarobot1/handler.predict
+    wrap:datarobot2: datarobot2/handler.predict
+
+plugins:
+  - serverless-python-individually
