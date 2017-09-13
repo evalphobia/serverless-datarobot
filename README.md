@@ -89,3 +89,113 @@ Then hit command below,
 ```bash
 $ sls invoke local -f datarobot --path event.json
 ```
+
+## AWS IAM Setting
+
+Here is example IAM setting,
+
+```js
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "logs:DescribeLogStreams",
+                "logs:DescribeLogGroups",
+                "logs:FilterLogEvents"
+            ],
+            "Resource": "arn:aws:logs:ap-northeast-1:*:*",
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+                "logs:DeleteLogGroup"
+            ],
+            "Resource": "arn:aws:logs:ap-northeast-1:<your AWS account number>:log-group:/aws/lambda/serverless-datarobot-*",
+            "Effect": "Allow"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:CreateRole",
+                "iam:DeleteRole",
+                "iam:GetRole",
+                "iam:PassRole",
+                "iam:PutRolePolicy",
+                "iam:DeleteRolePolicy"
+            ],
+            "Resource": [
+                "arn:aws:iam::<your AWS account number>:role/serverless-datarobot-*-lambdaRole"
+            ]
+        },
+        {
+            "Action": [
+                "lambda:GetFunction",
+                "lambda:GetFunctionConfiguration",
+                "lambda:ListVersionsByFunction",
+                "lambda:CreateFunction",
+                "lambda:UpdateFunctionCode",
+                "lambda:UpdateFunctionConfiguration",
+                "lambda:PublishVersion",
+                "lambda:AddPermission",
+                "lambda:InvokeFunction",
+                "lambda:DeleteFunction"
+            ],
+            "Resource": "arn:aws:lambda:ap-northeast-1:<your AWS account number>:function:serverless-datarobot-*",
+            "Effect": "Allow"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudformation:Describe*"
+            ],
+            "Resource": [
+                "*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudformation:CreateStack",
+                "cloudformation:UpdateStack",
+                "cloudformation:ValidateTemplate"
+            ],
+            "Resource": [
+                "arn:aws:cloudformation:ap-northeast-1:<your AWS account number>:stack/serverless-datarobot-*/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:CreateBucket",
+                "s3:DeleteBucket",
+                "s3:PutObject",
+                "s3:Get*",
+                "s3:List*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::serverless-datarobot",
+                "arn:aws:s3:::serverless-datarobot/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "SNS:Subscribe"
+            ],
+            "Resource": [
+                "arn:aws:sns:ap-northeast-1:<your AWS account number>:serverless-datarobot*"
+            ]
+        }
+    ]
+}
+```
+
+Change your own setting,
+
+- `<your AWS account number>` (e.g. 0123456789)
+- `ap-northeast-1` for your `region`
+- `serverless-datarobot` for your service name in `serverless.yml`
