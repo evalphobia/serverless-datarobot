@@ -31,6 +31,14 @@ functions:
     package:
       include:
         - datarobot2/**
+  status:
+    handler: status.status
+    memorySize: 128
+    events:
+      - http:
+          path: status
+          method: get
+
 
 custom:
   pyIndividually:
