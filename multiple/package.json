@@ -7,12 +7,16 @@
     "deploy": "sls deploy -f datarobot1 -v",
     "logs": "sls logs -f datarobot1",
     "invoke": "sls invoke -f datarobot1 --path ./event.json",
-    "local": "sls invoke -f datarobot1 --path ./event.json"
+    "local": "sls invoke -f datarobot1 --path ./event.json",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "keywords": [],
   "author": "evalphobia",
   "license": "MIT",
   "dependencies": {
-    "serverless-python-individually": "^0.1.6"
-  }
+    "serverless-python-individually": "^0.1.6",
+    "snyk": "^1.316.1"
+  },
+  "snyk": true
 }
